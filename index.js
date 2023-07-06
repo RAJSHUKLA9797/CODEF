@@ -7,6 +7,7 @@ app.use(bodyParser.json())
 const path = require('path');
 app.set('view engine','ejs');//tell my app to use express and ejs
 app.set('views',path.join(__dirname,'views'))
+app.use(express.static(path.join(__dirname, 'public')))
 app.get('/',(req,res)=>{
   res.send('heeello')
 })
@@ -23,7 +24,7 @@ app.post('/user',async(req,res)=>{
       var udata = response.data.result[0]
       console.log(udata)
       // res.json(userInfo);
-      res.render('display.ejs',{udata})
+      res.render('display.ejs', {udata})
     } catch (error) {
       res.status(500).json({ error: 'Failed to fetch user information' });
     }
