@@ -9,7 +9,7 @@ app.set('view engine','ejs');//tell my app to use express and ejs
 app.set('views',path.join(__dirname,'views'))
 app.use(express.static(path.join(__dirname, 'public')))
 app.get('/',(req,res)=>{
-  res.send('heeello')
+  res.redirect('/user')
 })
 
 
