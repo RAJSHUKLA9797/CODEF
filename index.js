@@ -63,7 +63,7 @@ app.post('/:user/topic', async (req, res) => {
     solvedProblems.sort((a, b) => {
       return a.rating - b.rating;
     });
-    console.log(allproblems)
+    // console.log(allproblems)
     res.render('problems.ejs', { solvedProblems })
   }
   catch (error) {

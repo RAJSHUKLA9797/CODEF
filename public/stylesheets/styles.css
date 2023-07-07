@@ -130,41 +130,46 @@ select {
     height: 26px;
 }
 
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
 
 
 /* Float four columns side by side */
-.column {
-    float: left;
-    width: 0.1em;
-    padding: 0 10px;
-}
+
 
 /* Remove extra left and right margins, due to padding in columns */
-.row {
-    margin: 0 -5px;
-}
 
 /* Clear floats after the columns */
-.row:after {
+/* .row:after {
     content: "";
     display: table;
     clear: both;
-}
+} */
 
 /* Style the counter cards */
 .cardProblems {
+    margin: 10px;
+    flex-basis: 23.5%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     /* this adds the "card" effect */
-    padding: 16px;
+    padding: 10px;
     text-align: center;
     background-color: #f1f1f1;
+    border-radius: 1em;
+}
+
+.main p {
+    font-size: 16px;
 }
 
 /* Responsive columns - one column layout (vertical) on small screens */
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
     .column {
         width: 0.1em;
         display: block;
         margin-bottom: 20px;
     }
-}
+} */
