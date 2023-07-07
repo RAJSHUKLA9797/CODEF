@@ -40,6 +40,7 @@ app.get('/user/problems', (req, res) => {
 /**yha pr dropdown se post request accept kro */
 app.post('/:user/topic', async (req, res) => {
   let solvedProblems = []
+  let solvedProblemsFinal = []
   const { tag, username } = req.body;
   // console.log(tag);
   // console.log(username);
@@ -63,8 +64,22 @@ app.post('/:user/topic', async (req, res) => {
     solvedProblems.sort((a, b) => {
       return a.rating - b.rating;
     });
+    let lastName = solvedProblems[0].name
+    solvedProblemsFinal.push(solvedProblems[0]);
+    for (let prob of solvedProblems) {
+      if (prob.name !== lastName)
+      {
+        solvedProblemsFinal.push({
+          name: prob.name,
+          contestId: prob.contestId,
+          index: prob.index,
+          rating: prob.rating
+        })
+        lastName = prob.name;
+      }
+    }
     // console.log(allproblems)
-    res.render('problems.ejs', { solvedProblems })
+    res.render('problems.ejs', { solvedProblemsFinal })
   }
   catch (error) {
     res.status(500).json({ error: 'failed' })
