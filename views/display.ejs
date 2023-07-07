@@ -11,7 +11,7 @@
     <div class="card_background_img"></div>
     <img class="card_profile_img" src="<%=udata.titlePhoto%>" alt="">
     <div class="user_details">
-        <h3><%=udata.firstName%> <%=udata.lastName%></h3>
+        <a href="<%=`https://codeforces.com/profile/${udata.handle}`%>"><h3><%=udata.firstName%> <%=udata.lastName%></h3></a>
         <p><%=udata.rank%></p>
         <p><%=udata.organization%>, <%=udata.country%></p>
     </div>
@@ -33,7 +33,19 @@
                 <p>Friends</p>
             </div>
         </div>
-        <a href=<%=`https://codeforces.com/profile/${udata.handle}`%>><button class="btn">View Profile</button></a>
+        <form action="/user/topic" method="POST">
+          <section>
+            <label for="tag">Enter Tag </label>
+            <input type="text" id="tag" placeholder="Enter Tag" name="tag"><!--this name is varible which is used in the query string-->
+          </section>
+          <section>
+            
+            <input type="hidden" id="username" placeholder="Enter Username" name="username" value="<%=udata.handle%>"><!--this name is varible which is used in the query string-->
+          </section>
+            <button>Apply</button>
+        </form>
+        
+        <!-- <a href="/user/problems"><button class="btn">View Solved Problems</button></a> -->
     </div>
   </div>
 </body>
