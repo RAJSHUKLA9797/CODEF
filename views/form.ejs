@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/styles.css">
     <title>New Comment</title>
 </head>
 <body>
-    <h1>Make a new comment</h1>
-    <form action="/user" method="POST"><!--from here we will make a post request-->
-        <section>
-        <label for="username">Enter username </label>
-        <input type="text" id="username" placeholder="username" name="username"><!--this name is varible which is used in the query string-->
-        </section>
-    <button>Submit</button>
-    </form>
-    
+    <div class="cardForm">
+        <h1>&#60;&#60; &#8220;CleverCode&#8221; &#62;&#62;</h1>
+        <form action="/user" method="POST"><!--from here we will make a post request-->
+            <section>
+            <label for="username"><b>Enter username</b></label>
+            <input type="text" id="username" placeholder="username" name="username"><!--this name is varible which is used in the query string-->
+            </section>
+            <button class="btn">Submit</button>
+        </form>
+    </div>  
 </body>
 </html>
