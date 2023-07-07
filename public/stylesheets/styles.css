@@ -30,6 +30,7 @@ p {
     margin: 0 auto;
     margin-top: 80px;
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 1em;
 }
 
 .card_profile_img {
@@ -54,6 +55,7 @@ p {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    border-radius: 1em;
 }
 
 .user_details p {
@@ -99,6 +101,7 @@ p {
     font-weight: 600;
     text-transform: uppercase;
     font-family: monospace;
+    border-radius: 1em;
 }
 
 .cardForm {
@@ -109,6 +112,7 @@ p {
     margin: 0 auto;
     margin-top: 230px;
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 1em;
 }
 
 .cardForm h1 {
@@ -128,6 +132,7 @@ select {
     margin-left: 10px;
     border-width: 2px;
     height: 26px;
+    border-radius: 0.5em;
 }
 
 .main {
@@ -163,6 +168,19 @@ select {
 
 .main p {
     font-size: 16px;
+}
+
+.error1 {
+    text-align: center;
+    margin-top: 300px;
+    color: #000000;
+}
+
+.error2 {
+    text-align: center;
+    margin-top: 300px;
+    color: #000000;
+    font-size: 20px;
 }
 
 /* Responsive columns - one column layout (vertical) on small screens */

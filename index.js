@@ -30,7 +30,7 @@ app.post('/user', async (req, res) => {
     // res.json(userInfo);
     res.render('display.ejs', { udata })
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch user information' });
+    res.render('error1.ejs')
   }
 })
 /*yha user ke problems ka route bna */
@@ -67,8 +67,7 @@ app.post('/:user/topic', async (req, res) => {
     let lastName = solvedProblems[0].name
     solvedProblemsFinal.push(solvedProblems[0]);
     for (let prob of solvedProblems) {
-      if (prob.name !== lastName)
-      {
+      if (prob.name !== lastName) {
         solvedProblemsFinal.push({
           name: prob.name,
           contestId: prob.contestId,
@@ -78,11 +77,11 @@ app.post('/:user/topic', async (req, res) => {
         lastName = prob.name;
       }
     }
-    // console.log(allproblems)
+    console.log(solvedProblems.length)
     res.render('problems.ejs', { solvedProblemsFinal })
   }
   catch (error) {
-    res.status(500).json({ error: 'failed' })
+    res.render('error2.ejs', {tag, username})
   }
 })
 app.listen(4000, () => {
