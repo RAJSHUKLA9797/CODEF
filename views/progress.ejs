@@ -20,28 +20,22 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link"><%=username%></a>
+            <a class="nav-link"><%=username1%></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link"><%=tag%></a>
+            <a class="nav-link"><%=tag1%></a>
           </li>
         </ul>
-        <form class="d-flex" role="search" action = '/user/topic/progress' method="POST"  >
-          <input class="form-control me-2" type="search" placeholder="Enter your handle" aria-label="Search" name="yourHandle">
-          <section>
-
-            <input type="hidden" id="hiddenTag" placeholder="Enter Username" name="hiddenTag"
-              value="<%=tag%>"><!--this name is varible which is used in the query string-->
-          </section>
-          <button class="compare_btn btn-outline-success" type="submit">Check progress</button>
-        </form>
+        <span class="navbar-text">
+            <a class="nav-link active" aria-current="page"><%= yourHandle %></a>
+          </span>
       </div>
     </div>
   </nav>
   <section class="main">
     <%for(let c of solvedProblemsFinal){%>
             
-      <div class="cardProblems">
+      <div class=<%=c.green%>>
         <h3><%=c.name%></h3>
         <p><%=c.rating%></p>
         <p><a href=<%=`https://codeforces.com/contest/${c.contestId}/problem/${c.index}`%>>Solve</a></p>

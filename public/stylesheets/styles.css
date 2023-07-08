@@ -146,7 +146,19 @@ select {
     flex-direction: row;
 }
 
+.form-control {
+    margin: auto;
+    height: 26px;
+    border-radius: 0.5em;
+}
 
+.compare_btn {
+    margin: auto;
+    background-color: #24c5a1;
+    width: 75%;
+    border-radius: 0.5em;
+    padding: 0.25em;
+}
 /* Float four columns side by side */
 
 
@@ -168,6 +180,17 @@ select {
     padding: 10px;
     text-align: center;
     background-color: #f1f1f1;
+    border-radius: 1em;
+}
+
+.greenCardProblems {
+    margin: 10px;
+    flex-basis: 23.5%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    /* this adds the "card" effect */
+    padding: 10px;
+    text-align: center;
+    background-color: rgb(122, 234, 122);
     border-radius: 1em;
 }
 

@@ -38,12 +38,18 @@ app.get('/user/problems', (req, res) => {
   res.render('problems.ejs')
 })
 /**yha pr dropdown se post request accept kro */
+var mySolvedProblemsFinal = []
+var solvedProblemsFinal = []
+var tag1,username1
 app.post('/:user/topic', async (req, res) => {
+  solvedProblemsFinal = []
+  mySolvedProblemsFinal = []
   let solvedProblems = []
-  let solvedProblemsFinal = []
   const { tag, username } = req.body;
   // console.log(tag);
   // console.log(username);
+  tag1=tag
+  username1=username
   try {
     const response = await axios.get(`https://codeforces.com/api/user.status?handle=${username}&from=1&count=100000`)
     var allproblems = response.data.result
@@ -55,7 +61,8 @@ app.post('/:user/topic', async (req, res) => {
               name: prob.problem.name,
               contestId: prob.problem.contestId,
               index: prob.problem.index,
-              rating: prob.problem.rating
+              rating: prob.problem.rating,
+              green:"cardProblems"
             })
           }
         }
@@ -72,17 +79,82 @@ app.post('/:user/topic', async (req, res) => {
           name: prob.name,
           contestId: prob.contestId,
           index: prob.index,
-          rating: prob.rating
+          rating: prob.rating,
+          green:"cardProblems"
         })
         lastName = prob.name;
       }
     }
-    console.log(solvedProblems.length)
-    res.render('problems.ejs', { solvedProblemsFinal })
+    // console.log(solvedProblems.length)
+    res.render('problems.ejs', { solvedProblemsFinal ,tag,username})
   }
   catch (error) {
     res.render('error2.ejs', {tag, username})
   }
+})
+app.post('/user/topic/progress',async(req,res)=>{
+  //console.log(req.body)
+  const {yourHandle,hiddenTag}=req.body;
+  console.log(yourHandle)
+  console.log(hiddenTag)
+  let mySolvedProblems = []
+  try {
+    const response = await axios.get(`https://codeforces.com/api/user.status?handle=${yourHandle}&from=1&count=100000`)
+    var myAllProblems = response.data.result
+    // console.log(myAllProblems)
+    for (let prob of myAllProblems) {
+      if (prob.verdict == 'OK') {
+        for (let tagSearched of prob.problem.tags) {
+          if (tagSearched == hiddenTag) {
+            mySolvedProblems.push({
+              name: prob.problem.name,
+              contestId: prob.problem.contestId,
+              index: prob.problem.index,
+              rating: prob.problem.rating,
+              green:"cardProblems"
+            })
+          }
+        }
+      }
+    }
+    mySolvedProblems.sort((a, b) => {
+      return a.rating - b.rating;
+    });
+    let lastName = mySolvedProblems[0].name
+    mySolvedProblemsFinal.push(mySolvedProblems[0]);
+    for (let prob of mySolvedProblems) {
+      if (prob.name !== lastName) {
+        mySolvedProblemsFinal.push({
+          name: prob.name,
+          contestId: prob.contestId,
+          index: prob.index,
+          rating: prob.rating,
+          green:"cardProblems"
+        })
+        lastName = prob.name;
+      }
+    }
+    // console.log(mySolvedProblemsFinal)
+    // const setOfMyAllSolvedProblemsFinal = new Set(mySolvedProblemsFinal);/
+    // console.log(setOfMyAllSolvedProblemsFinal)
+    // console.log(solvedProblemsFinal)
+    for(let prob of solvedProblemsFinal){
+      for (let myProb of mySolvedProblemsFinal)
+      {
+        if (prob.name == myProb.name)
+        {
+          prob['green'] = "greenCardProblems";
+        }
+      }
+    }
+    // console.log(solvedProblemsFinal)
+    res.render('progress.ejs',{solvedProblemsFinal,tag1,username1, yourHandle,hiddenTag})
+    // res.send("it worked")
+  }
+  catch (error) {
+    res.render('error1.ejs')
+  }
+  
 })
 app.listen(4000, () => {
   console.log("on port 3000!!!")
